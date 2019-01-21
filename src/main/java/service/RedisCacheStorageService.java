@@ -1,7 +1,6 @@
 package service;
 
 import java.util.Map;
-
 /**
  * 缓存存储接口
  * @author yclimb

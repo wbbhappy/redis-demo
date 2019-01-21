@@ -4,20 +4,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
 import java.io.Serializable;
-
 /**
  * redis 缓存配置
  * @author yclimb
  */
 public class RedisCache implements Serializable {
-
     /**
      * 日志记录
      */
     private static final Log LOG = LogFactory.getLog(RedisCache.class);
-
     /**
      * redis 连接池
      */
@@ -25,7 +21,6 @@ public class RedisCache implements Serializable {
     public void setPool(JedisPool pool) {
         this.pool = pool;
     }
-
     /*static {
         if (pool == null) {
             //读取相关的配置
@@ -33,8 +28,7 @@ public class RedisCache implements Serializable {
             int maxActive = Integer.parseInt(resourceBundle.getString("redis.maxActive"));
             int maxIdle = Integer.parseInt(resourceBundle.getString("redis.maxIdle"));
             int maxWait = Integer.parseInt(resourceBundle.getString("redis.maxWait"));
-
-            String host = resourceBundle.getString("redis.host");
+            String host = resourceBundle.getString("redis.ip");
             int port = Integer.parseInt(resourceBundle.getString("redis.port"));
             String pass = resourceBundle.getString("redis.pass");
 
@@ -45,7 +39,6 @@ public class RedisCache implements Serializable {
             config.setMaxIdle(maxIdle);
             //设置超时时间
             config.setMaxWaitMillis(maxWait);
-
             //初始化连接池
             pool = new JedisPool(config, host, port, 2000, pass);
         }

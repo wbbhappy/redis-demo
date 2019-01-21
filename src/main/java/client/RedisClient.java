@@ -4,32 +4,24 @@ import com.alibaba.fastjson.JSON;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
 import java.util.ResourceBundle;
-
 /**
- *
  * <p>
  * 	Redis客户端访问
  * </p>
- *
  * Created by yclimb on 2017/6/8.
  */
 public class RedisClient {
-
     /**
      * 池化管理jedis链接池
      */
     public static JedisPool jedisPool;
-
     static {
-
         //读取相关的配置
         ResourceBundle resourceBundle = ResourceBundle.getBundle("redis");
-        int maxActive = Integer.parseInt(resourceBundle.getString("redis.pool.maxActive"));
-        int maxIdle = Integer.parseInt(resourceBundle.getString("redis.pool.maxIdle"));
-        int maxWait = Integer.parseInt(resourceBundle.getString("redis.pool.maxWait"));
-
+        int maxActive = Integer.parseInt(resourceBundle.getString("redis.maxActive"));
+        int maxIdle = Integer.parseInt(resourceBundle.getString("redis.maxIdle"));
+        int maxWait = Integer.parseInt(resourceBundle.getString("redis.maxWait"));
         String ip = resourceBundle.getString("redis.ip");
         int port = Integer.parseInt(resourceBundle.getString("redis.port"));
 
@@ -40,7 +32,6 @@ public class RedisClient {
         config.setMaxIdle(maxIdle);
         //设置超时时间
         config.setMaxWaitMillis(maxWait);
-
         //初始化连接池
         jedisPool = new JedisPool(config, ip, port);
     }
@@ -125,7 +116,6 @@ public class RedisClient {
         }
     }
 
-
     /**
      * 根据key 获取对象
      * @param key
@@ -144,6 +134,4 @@ public class RedisClient {
             jedisPool.returnResource(jedis);
         }
     }
-
-
 }

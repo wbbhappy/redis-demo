@@ -15,10 +15,10 @@ public class SimpleClient {
         //向缓存中保存对象
         City city = new City();
         city.setCity("city");
-        city.setCity("1");
-        city.setLastUpdate("2222");
+        city.setCity("石家庄");
+        city.setLastUpdate("20190131");
         //调用方法处理
-        boolean reusltCache = RedisClient.set("city1", city);
+        boolean reusltCache = RedisClient.set("city", city);
         if (reusltCache) {
             System.out.println("向缓存中保存对象成功。");
         }else{
@@ -27,7 +27,7 @@ public class SimpleClient {
     }
     @Test
     public void getUserInfo(){
-        City city = RedisClient.get("city1", City.class);
+        City city = RedisClient.get("city", City.class);
         if (city != null) {
             System.out.println("从缓存中获取的对象，" + city.getCity() + "@" + city.getLastUpdate());
         }
